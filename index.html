@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./images/Blue.png" />
+    <title>Nature Crush</title>
+    <link rel="stylesheet" href="candy.css" />
+    <script src="candy.js"></script>
+  </head>
+
+  <body>
+    <video autoplay loop muted id="video-background" playbackRate="2.0">
+      <source src="background.mp4" type="video/mp4" />
+    </video>
+    <h1>Nature Crush</h1>
+    <div class="score-time-container">
+      <div class="score-container">
+        <span>Score:</span>
+        <span id="score">0</span>
+      </div>
+      <div class="time-container">
+        <span>Time:</span>
+        <span id="time">0:30</span>
+      </div>
+    </div>
+    <div id="board"></div>
+
+    <script>
+      const startingMinutes = 0.5;
+      let time = startingMinutes * 60;
+
+      const countdownEl = document.getElementById("time");
+      setInterval(updateCountdown, 1000);
+
+      function updateCountdown() {
+        const minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        countdownEl.innerHTML = `${minutes}:${seconds}`;
+        time--;
+
+        if (time == 0) {
+          setTimeout(function () {
+            alert("Game over! Your score is " + score);
+            location.reload();
+          }, 1500);
+        }
+      }
+    </script>
+  </body>
+</html>
